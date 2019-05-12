@@ -31,27 +31,32 @@ class ShopApp extends Component {
           {
             title: "Колбаса",
             taken: false
-          },
+          }
         ]
       }
     }
 
     toggleItem(index){
-      console.log(index);
+      // console.log(index);
+      const items = this.state.items;
+      let taken = items[index].taken;
+      items[index].taken = !taken;
+
+      this.setState({items});
     }
 
     render() {
       return (
         <ol>
           {
-          this.state.items.map((item, index) => {
+              this.state.items.map((item, index) => {
               // return <li key={index}>{items.title}</li>
-              const _taken = item.taken ? 'taken' : '';
+              const className = item.taken ? 'taken' : '';
               return <ShoppingList  key = {index}
                                     title = {item.title}
-                                    taken = {_taken}
+                                    className = {className}
                                     toggleItem = {this.toggleItem.bind(this, index)}
-                                    />
+              />
           })
           }
         </ol>
